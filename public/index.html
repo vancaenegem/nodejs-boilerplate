@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<HTML>
+    <HEAD>
+        <meta charset="UTF-8">
+    </HEAD>
+    <BODY>
+        <script src="/socket.io/socket.io.js"></script>
+        
+        <script>
+            const socket = io();
+
+            const promise_socket = new Promise((resolve, reject) => {
+                socket.once ('connect', ()=>{ 
+                                                console.log ('Socket connected', socket.id);
+                                                socket.emit ('ping', (reponse)=>{console.log ('ping', reponse);});
+                                                resolve(); 
+                                            });
+            });
+            socket.onAny ((message, args) => {console.log ('received', message, args)});
+
+        </script>
+    </BODY>
+</HTML>
