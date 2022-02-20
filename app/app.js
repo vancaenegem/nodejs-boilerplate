@@ -23,9 +23,9 @@ app.use(cors());
 app.use(express.json())                        
 
 // ----- Ajout du partage de  documents 'public'
-if (fs.existsSync('public')) {
-    app.use(express.static('public', {index:['index.html'], extensions:['html']}) );
-    console.log ('public available at /');
+if (fs.existsSync(__dirname + '/../public')) {
+    app.use(express.static(__dirname + '/../public', {index:['index.html'], extensions:['html']}) );
+    __logger.info ('public available at /');
 }
 
 let swaggerAPIS = [];
@@ -49,7 +49,7 @@ if (config.swagger !== undefined && config.swagger === true ) {
     const swaggerDocs = swaggerJSDoc(swaggerOptions);  
     app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
 
-    console.log ('swagger available at /api-docs');
+    __logger.info('swagger available at /api-docs');
 }
 // -------------------------------------------------------------------
 
@@ -63,8 +63,8 @@ if (config.http !== undefined && config.http !== null) {
     let httpServer = require('http').createServer(app);
     socketio.attach(httpServer);
     promesses.push (httpServer.listen(config.http.port,  function () {
-                            console.log('HTTP Server listening on port %d', config.http.port);
-                        }));
+        __logger.info('HTTP Server listening on port ['+ config.http.port+']');
+    }));
 }
 
 if (config.https !== undefined && config.https !== null) {
@@ -75,8 +75,8 @@ if (config.https !== undefined && config.https !== null) {
     let httpsServer = require('https').createServer(opts, app);
     socketio.attach(httpsServer);
     promesses.push (httpsServer.listen(config.https.port,  function () {
-                            console.log('HTTPS Server listening on port %d', config.https.port);
-                        }));
+        __logger.info('HTTPS Server listening on port ['+ config.https.port+']');
+    }));
 }
 
 Promise.all (promesses).then (()=>{

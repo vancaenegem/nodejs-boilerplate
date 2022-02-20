@@ -4,8 +4,6 @@ require ('./config/config');
 require ('./app/logger');
 require ('./app/app');
 
-
-__app.once ('ready', ()=>{
-    __logger.log('info', 'app ready');
-    
-});
+__app.once ('ready', ()=>{  
+    console.log('app ready'); 
+});   

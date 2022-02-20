@@ -1,5 +1,7 @@
 const winston       = require('winston');
 
+console.log ('path '+`${__config.logPath}/debug.log`);
+
 global.__loggers = {
     default:winston.createLogger({
         exitOnError: false,
@@ -9,7 +11,7 @@ global.__loggers = {
           ),
         transports: [
             new winston.transports.File({   level:'debug', 
-                                            filename: `${__config.appPath}/logs/debug.log`, 
+                                            filename: `${__config.logPath}/debug.log`, 
                                             })
         ]
     }),
@@ -21,7 +23,7 @@ global.__loggers = {
           ),
         transports: [
             new winston.transports.File({   level:'debug', 
-                                            filename: `${__config.appPath}/logs/other.log`,
+                                            filename: `${__config.logPath}/other.log`,
                                             maxSize:100000 }) // 1Mb
         ]
     })

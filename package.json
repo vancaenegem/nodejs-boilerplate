@@ -1,4 +1,12 @@
 {
+  "name":"boilerplate",
+  "keywords": [],
+  "author": "stephane@vancaenegem.fr",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "bin": "index.js",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
@@ -6,5 +14,10 @@
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.3.0",
     "winston": "^3.6.0"
+  },
+  "pkg": {
+    "assets": ["public/**/*", "config/**/*", "app/**/*"],
+    "targets" : ["node16-win-x64"],
+    "outputPath": "dist"
   }
 }
