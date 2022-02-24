@@ -6,6 +6,7 @@ module.exports = function() {
                 config  : __config,
                 pm2     : pm2_module,
                 cron    : cronJobs.stringify(),
-                env     : process.env
+                env     : process.env,
+                mem     : process.memoryUsage()
     };
 };
