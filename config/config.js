@@ -16,14 +16,16 @@ global.__config = {
     workingDirectory : workingDirectory,
     dataPath    : workingDirectory + '/data',
     logPath     : workingDirectory + '/logs',
-    http        : {
-        port    : 4001
-    }  ,
-    https       : {
-        port        : 5001,
-        keyfile     : __dirname+'/certificate/keytmp.pem',
-        cert        : __dirname+'/certificate/cert.pem',
-        passphrase  : 'pass'
-    },
-    swagger : true
+    express     :{
+                    http        : {
+                        port    : 4001
+                    }  ,
+                    https       : {
+                        port        : 5001,
+                        keyfile     : __dirname+'/certificate/keytmp.pem',
+                        cert        : __dirname+'/certificate/cert.pem',
+                        passphrase  : 'pass'
+                    },
+                    swagger : true
+    }
 };

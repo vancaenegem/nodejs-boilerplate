@@ -1,5 +1,5 @@
 {
-  "name":"boilerplate",
+  "name": "boilerplate",
   "keywords": [],
   "author": "stephane@vancaenegem.fr",
   "main": "index.js",
@@ -9,15 +9,23 @@
   "bin": "index.js",
   "dependencies": {
     "cors": "^2.8.5",
+    "cron": "^1.8.2",
     "express": "^4.17.3",
     "socket.io": "^4.4.1",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.3.0",
+    "tx2": "^1.0.5",
     "winston": "^3.6.0"
   },
   "pkg": {
-    "assets": ["public/**/*", "config/**/*", "app/**/*"],
-    "targets" : ["node16-win-x64"],
+    "assets": [
+      "public/**/*",
+      "config/**/*",
+      "app/**/*"
+    ],
+    "targets": [
+      "node16-win-x64"
+    ],
     "outputPath": "dist"
   }
 }

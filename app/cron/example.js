@@ -1,8 +1,8 @@
-/*
+
 
 // Voir https://github.com/kelektiv/node-cron
 
-
+/*
 const CronJob = require('cron').CronJob;
 
 module.exports = {test: new CronJob(
@@ -13,6 +13,5 @@ module.exports = {test: new CronJob(
         null,
         true,
         'America/Los_Angeles'
-    );
-    }
+    )};
 */
