@@ -16,13 +16,15 @@ let pm2_env = [ 'PM2_USAGE',
                 'restart_time',
                 'pm_uptime'];
 
-
-
 let pm2_module = {};
 pm2_env.forEach ((elt)=>{
     if (process.env[elt] !== undefined) pm2_module[elt] = process.env[elt];
 });
 
+
+/**
+ *  Offre la possibilite de consulter les fichiers de log de pm2
+ */
 pm2_module.log = function (what = 'out', size = 0) {
     let varname;
     switch (what) {
@@ -43,7 +45,9 @@ pm2_module.log = function (what = 'out', size = 0) {
     return lines.join ('\n');
 }
 
-// flush logs
+/**
+ *  flush logs
+ */
 pm2_module.flush = function () {    // This will empty the current application logs managed by PM2
     if (this.pm_id === undefined) return false;
 

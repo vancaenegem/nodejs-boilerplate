@@ -10,14 +10,35 @@ npm install
 
 ## configure
 
+### Run mode as an Electron app
+By default this bpoilerplate is configured to run as an Electron app. Nothing to do so
+
+### Run mode as a daemon
+Change the start directive in the ```package.json``` file :
+
+```
+{
+  "scripts": {
+    "start_daemon": "node index.js",
+    "start":"electron ."
+}
+```
+You have to use replace ```start_daemon``` with the ```start``` directive to run your app as a daemon.
+
+
+### global configuration
+
 Change the project name in the following files
-- ```package.json```
 - ```config/config.js```
+- ```package.json```
 - For running app with pm2 ```ecosystem.config.js```
 
 ## Start the app
 
+### NPM
 
+NPM will read your ```package.json``` file and start the app : 
+```npm start```
 
 ### Manually
 
@@ -32,7 +53,6 @@ So under Linux environnement
 Windows environnement
 - Typing ```node index.js``` starts the app
 
-You can also ```npm start```
 ### With pm2
 
 First check the file ```ecosystem.config.js``` then ```run pm2 start ecosystem.config.js```
@@ -55,4 +75,18 @@ An example is given in the ```./app/cron``` directory
 
 # Package
 
+## with pkg
+
+Firsty install pkg
+
+```npm install pkg```
+
 ```pkg .```
+
+## Electron executable
+
+https://github.com/electron/electron-packager
+
+```npm install electron-packager```
+
+```npx electron-packager```

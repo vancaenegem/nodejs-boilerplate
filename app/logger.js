@@ -1,7 +1,5 @@
 const winston       = require('winston');
 
-console.log ('path '+`${__config.logPath}/debug.log`);
-
 global.__loggers = {
     default:winston.createLogger({
         exitOnError: false,

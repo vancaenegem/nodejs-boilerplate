@@ -4,12 +4,14 @@
   "author": "stephane@vancaenegem.fr",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start_daemon": "node index.js",
+    "start":"electron ."
   },
   "bin": "index.js",
   "dependencies": {
     "cors": "^2.8.5",
     "cron": "^1.8.2",
+    "electron": "^18.0.3",
     "express": "^4.17.3",
     "socket.io": "^4.4.1",
     "swagger-jsdoc": "^6.1.0",
