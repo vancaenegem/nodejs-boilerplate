@@ -1,5 +1,5 @@
 // ----- getting the main working directory
-let workingDirectory = require('path').dirname(process.argv[1]);
+let workingDirectory = process.cwd();
 
 const pjson = require('../package.json');
 
