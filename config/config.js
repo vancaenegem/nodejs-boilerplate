@@ -1,6 +1,9 @@
 // ----- getting the main working directory
 let workingDirectory = require('path').dirname(process.argv[1]);
 
+const pjson = require('../package.json');
+
+// Determine le dossier de travail en fonction de l'environnement d'execution (PM2 ou autre)
 if (process.pkg !== undefined )             { workingDirectory = require('path').dirname(process.argv[0]); } // test si l'application a ete packagee avec l'outil "pkg"
 
 if (process.env.pm_cwd !== undefined)       { workingDirectory = process.env.pm_cwd; } // test si l'application a ete lancee avec pm2
@@ -9,7 +12,7 @@ console.log ('workingDirectory ['+workingDirectory+']' );
 // -----
 
 global.__config = {
-    appName : 'boilerplate',
+    appName : pjson.name,
     version : '1.0.0',
     debug   : true,
     env         : 'test',
@@ -27,5 +30,8 @@ global.__config = {
                         passphrase  : 'pass'
                     },
                     swagger : true
+    },
+    electron    :{
+                    url : 'http://localhost:4001'
     }
 };
