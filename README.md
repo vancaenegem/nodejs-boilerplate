@@ -79,7 +79,7 @@ An example is given in the ```./app/cron``` directory
 
 Firsty install pkg
 
-```npm install pkg```
+```npm install -g pkg```
 
 ```pkg .```
 
