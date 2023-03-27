@@ -14,7 +14,7 @@ function init_electron() {
             electron.app.quit();
         });
         electron.app.on('ready', ()=>{
-            console.log ('Electron ready.');
+            __logger.info ('Electron ready.');
             resolve() ;
         });
     });

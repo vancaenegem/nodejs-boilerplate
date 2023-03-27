@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <HTML>
     <HEAD>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
     </HEAD>
     <BODY>
         <H1>READY.</H1>
+        <div id="info"></div>
         <script src="/socket.io/socket.io.js"></script>
         
         <script>
+
+            // Socket use examples
             const socket = io();
 
             const promise_socket = new Promise((resolve, reject) => {
@@ -19,6 +22,12 @@
             });
             socket.onAny ((message, args) => {console.log ('received', message, args)});
 
+            // Display Electron informations (see preload.js file)
+            if (typeof (versions) !== 'undefined') {
+                document.getElementById('info').innerText = `This app is using Chrome (v${versions.chrome()}), 
+                                                            Node.js (v${versions.node()}), 
+                                                            and Electron (v${versions.electron()})`;
+            }
         </script>
     </BODY>
 </HTML>

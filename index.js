@@ -11,11 +11,12 @@ __app.once ('ready', ()=>{
     __logger.info ('app ready');
 
     if (electron.BrowserWindow) {
-        let mainWindow = new electron.BrowserWindow({width: 800, height: 600});
+        let mainWindow = new electron.BrowserWindow(__config.electron.options);
         mainWindow.loadURL(__config.electron.url);
         mainWindow.on('closed', function() {
             mainWindow = null;
         });
+        //mainWindow.webContents.openDevTools(); // open devtools
     }
 
 

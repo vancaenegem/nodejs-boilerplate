@@ -2,6 +2,7 @@
 let workingDirectory = process.cwd();
 
 const pjson = require('../package.json');
+const path  = require('path');
 
 // Determine le dossier de travail en fonction de l'environnement d'execution (PM2 ou autre)
 if (process.pkg !== undefined )             { workingDirectory = require('path').dirname(process.argv[0]); } // test si l'application a ete packagee avec l'outil "pkg"
@@ -36,6 +37,13 @@ global.__config = {
                     }
     },
     electron    :{
-                    url : 'http://localhost:4001'
+                    url : 'http://localhost:4001',
+                    options : {
+                            width: 800, height: 600,
+                            title : pjson.name,
+                            webPreferences: {
+                                preload: path.join(workingDirectory, 'preload.js')
+                            }
+                    }
     }
 };
