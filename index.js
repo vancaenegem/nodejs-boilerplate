@@ -8,7 +8,7 @@ require ('./app/app');
 
 
 __app.once ('ready', ()=>{  
-    console.log('app ready'); 
+    __logger.info ('app ready');
 
     if (electron.BrowserWindow) {
         let mainWindow = new electron.BrowserWindow({width: 800, height: 600});
