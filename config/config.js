@@ -29,7 +29,11 @@ global.__config = {
                         cert        : __dirname+'/certificate/cert.pem',
                         passphrase  : 'pass'
                     },
-                    swagger : true
+                    swagger : true,
+                    ipfilter : {
+                        ips  : ['127.0.0.1/24'],
+                        options : {mode: 'deny'}
+                    }
     },
     electron    :{
                     url : 'http://localhost:4001'

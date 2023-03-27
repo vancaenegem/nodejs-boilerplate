@@ -89,4 +89,4 @@ https://github.com/electron/electron-packager
 
 ```npm install electron-packager```
 
-```npx electron-packager . --out=dist```
+```npx electron-packager . --out=dist (--asar)```
