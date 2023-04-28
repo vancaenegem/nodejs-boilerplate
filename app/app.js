@@ -1,6 +1,5 @@
 let config  = __config;
-let app = {};
-
+let app;
 
 function init_electron() {
     return new Promise ( (resolve, reject) => {
@@ -21,16 +20,10 @@ function init_electron() {
 }
 
 function init_express() {
-
     return new Promise ( (resolve, reject) => {
-        if (config.express === undefined || config.express === null) {
-            resolve (null);
-            return null;
-        }
-
         const fs            = require('fs');
         const routes        = require('./routes');
-        const express       = require('express');
+        
         const cors          = require('cors');
         const ipfilter      = require('express-ipfilter').IpFilter;
 
@@ -119,16 +112,21 @@ function init_express() {
 }
 
 
-init_express().then((app)=>{
-    if (app === null) {
-        const EventEmitter = require('events');
-        global.__app = new EventEmitter();
-        app = global.__app;
-    }
 
+if (config.express === undefined || config.express === null) {
+    const EventEmitter = require('events');
+    app = new EventEmitter();
+    global.__app = app;
     init_electron().then(()=>{
         app.emit ('ready');
     });
-});
+}else {
+    const express       = require('express');
+    init_express().then((app)=>{
+        init_electron().then(()=>{
+            app.emit ('ready');
+        });
+    });
+}
 
 module.exports = app;
