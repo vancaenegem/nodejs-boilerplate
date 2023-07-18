@@ -83,10 +83,18 @@ Firsty install pkg
 
 ```pkg .```
 
-## Electron executable
+## Electron executable with Electron-packager
 
 https://github.com/electron/electron-packager
 
-```npm install electron-packager```
+```npm install -g electron-packager```
 
 ```npx electron-packager . --out=dist (--asar)```
+
+or ```npm run package```
+
+## Electron executable with Electron-builder
+
+```npm install -g electron-builder```
+
+```npm run build```

@@ -1,12 +1,11 @@
-// ----- getting the main working directory
-let workingDirectory = process.cwd();
-
 const pjson = require('../package.json');
 const path  = require('path');
 
 // Determine le dossier de travail en fonction de l'environnement d'execution (PM2 ou autre)
-if (process.pkg !== undefined )             { workingDirectory = require('path').dirname(process.argv[0]); } // test si l'application a ete packagee avec l'outil "pkg"
-
+// ----- getting the main working directory
+let workingDirectory = process.cwd();
+if (require.main.path !== undefined)        { workingDirectory = require.main.path;};
+if (process.pkg !== undefined )             { workingDirectory = path.dirname(process.argv[0]); } // test si l'application a ete packagee avec l'outil "pkg"
 if (process.env.pm_cwd !== undefined)       { workingDirectory = process.env.pm_cwd; } // test si l'application a ete lancee avec pm2
 
 console.log ('workingDirectory ['+workingDirectory+']' );
@@ -21,13 +20,14 @@ global.__config = {
     dataPath    : workingDirectory + '/data',
     logPath     : workingDirectory + '/logs',
     express     :{
+                    enabled     : false,
                     http        : {
                         port    : 4001
                     }  ,
                     https       : {
                         port        : 5001,
-                        keyfile     : __dirname+'/certificate/keytmp.pem',
-                        cert        : __dirname+'/certificate/cert.pem',
+                        keyfile     : path.join(workingDirectory, 'config', 'certificate', 'keytmp.pem'),
+                        cert        : path.join(workingDirectory, 'config', 'certificate', 'cert.pem'),
                         passphrase  : 'pass'
                     },
                     swagger : true,
