@@ -12,23 +12,15 @@ __app.once ('ready', ()=>{
 
     if (electron.BrowserWindow) {
         if (__config.electron !== undefined && __config.electron !== null) {
-            if (__config.electron.options.removeMenu === true) {
-                electron.app.on("browser-window-created", (e, win) => {
-                    win.removeMenu();
-                });
-            }
-            
             let mainWindow = new electron.BrowserWindow(__config.electron.options);
-            
-            mainWindow.on('closed', function() {
+            mainWindow.on('closed', ()=> {
                 mainWindow = null;
             });
-            
-            mainWindow.loadURL(__config.electron.url);
 
-            if (__config.electron.devTools === true) {
+            mainWindow.loadURL(__config.electron.url);
+            if (__config.electron.options.devTools === true) {
                 mainWindow.webContents.openDevTools(); // open devtools
             }
-        }   
-    }
+        }
+    }   
 });   

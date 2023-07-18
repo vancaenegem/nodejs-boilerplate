@@ -13,13 +13,20 @@ function init_electron() {
             return;
         }
 
-        electron.app.on('window-all-closed', function() {
+        electron.app.on('window-all-closed', ()=> {
             electron.app.quit();
         });
         electron.app.on('ready', ()=>{
             __logger.info ('Electron ready.');
             resolve() ;
         });
+
+        if (__config.electron.options.removeMenu === true) {
+            electron.app.on("browser-window-created", (e, win) => {
+                win.removeMenu();
+            });
+        }
+        
     });
 }
 

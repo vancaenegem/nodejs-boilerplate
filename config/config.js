@@ -41,7 +41,7 @@ global.__config = {
                             width: 800, height: 600,
                             title : pjson.name,
                             devTools : true,
-                            removeMenu : true,
+                            removeMenu : false,
                             webPreferences: {
                                 preload: path.join(workingDirectory, 'preload.js'),
                                 webSecurity: true,
