@@ -1,17 +1,20 @@
 {
   "name": "boilerplate",
   "keywords": [],
+  "description":"A boilerplate for NodeJS",
   "author": "stephane@vancaenegem.fr",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start_daemon": "node index.js",
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder",
+    "package": "npx electron-packager . --overwrite --asar=true"
   },
   "bin": "index.js",
   "dependencies": {
     "cors": "^2.8.5",
     "cron": "^1.8.2",
-    "electron": "^18.0.3",
     "express": "^4.17.3",
     "express-ipfilter": "^1.3.1",
     "socket.io": "^4.4.1",
@@ -19,6 +22,18 @@
     "swagger-ui-express": "^4.3.0",
     "tx2": "^1.0.5",
     "winston": "^3.6.0"
+  },
+  "devDependencies": {
+    "electron": "^25.3.0"
+  },
+  "build": {
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory":true,
+      "allowElevation": true,
+      "runAfterFinish":false
+    }
   },
   "pkg": {
     "assets": [
