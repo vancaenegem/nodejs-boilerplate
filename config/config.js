@@ -9,7 +9,6 @@ if (process.pkg !== undefined )             { workingDirectory = path.dirname(pr
 if (process.env.pm_cwd !== undefined)       { workingDirectory = process.env.pm_cwd; } // test si l'application a ete lancee avec pm2
 
 console.log ('workingDirectory ['+workingDirectory+']' );
-// -----
 
 global.__config = {
     appName : pjson.name,
@@ -20,7 +19,7 @@ global.__config = {
     dataPath    : workingDirectory + '/data',
     logPath     : workingDirectory + '/logs',
     express     :{
-                    enabled     : false,
+                    enabled     : true,
                     http        : {
                         port    : 4001
                     }  ,
@@ -41,8 +40,13 @@ global.__config = {
                     options : {
                             width: 800, height: 600,
                             title : pjson.name,
+                            devTools : true,
+                            removeMenu : true,
                             webPreferences: {
-                                preload: path.join(workingDirectory, 'preload.js')
+                                preload: path.join(workingDirectory, 'preload.js'),
+                                webSecurity: true,
+                                contextIsolation: true,
+                                nodeIntegration: true 
                             }
                     }
     }
