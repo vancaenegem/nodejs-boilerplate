@@ -46,7 +46,6 @@ function init_express() {
         const routes        = require('./routes');
         const express       = require('express');
         const cors          = require('cors');
-        const ipfilter      = require('express-ipfilter').IpFilter;
 
         const swaggerJSDoc  = require('swagger-jsdoc');  
         const swaggerUI     = require('swagger-ui-express');  
@@ -57,12 +56,7 @@ function init_express() {
         app     = __app;
 
         // ----- Activation de CORS
-        app.use(cors());
-
-        // ----- filtre des IP
-        if (config.ipfilter !== undefined) {
-            app.use(ipfilter(config.ipfilter.ips, config.ipfilter.options));
-        }
+        app.use(cors());        
 
         // ----- Activation du raw (json)
         app.use(express.json())                        
