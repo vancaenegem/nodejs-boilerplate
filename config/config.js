@@ -29,11 +29,7 @@ global.__config = {
                         cert        : path.join(workingDirectory, 'config', 'certificate', 'cert.pem'),
                         passphrase  : 'pass'
                     },
-                    swagger : true,
-                    ipfilter : {
-                        ips  : ['127.0.0.1/24'],
-                        options : {mode: 'deny'}
-                    }
+                    swagger : true
     },
     electron    :{
                     url : 'http://localhost:4001',
