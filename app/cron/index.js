@@ -13,6 +13,7 @@ fs.readdirSync(__dirname).forEach( (file) => {
 
 cronJobs.stringify = function() {
     let reponse = {};
+    cpt = 0;
     Object.keys(this).forEach( (key) => {        
         if (key === 'stringify')                        { return; }
         if (typeof (this[key].lastDate) !== 'function') {return;}
@@ -20,7 +21,9 @@ cronJobs.stringify = function() {
             lastDate : this[key].lastDate(),
             nextDates : this[key].nextDates(),
         };
+        cpt++;
     });
-    return reponse;
+    if (cpt > 0) return reponse;
+    return null;
 }
 module.exports = cronJobs;

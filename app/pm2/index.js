@@ -58,4 +58,16 @@ pm2_module.flush = function () {    // This will empty the current application l
     return reponse;
 }
 
+pm2_module.stringify = function () {
+    let reponse = {};
+    let cpt = 0;
+    Object.keys(this).forEach( (key) => {
+        if (typeof this[key] === 'function') { return;}
+        reponse[key] = this[key];
+        cpt++;
+    });
+    if (cpt > 0)   return reponse;
+    return null;
+}
+
 module.exports = pm2_module;
