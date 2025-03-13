@@ -1,8 +1,9 @@
 const EventEmitter = require('events');
+const path  = require('path');
 
 let config  = __config;
 
-global.__app = new EventEmitter();;
+global.__app = new EventEmitter();
 let app = global.__app;
 
 function init_electron() {
@@ -62,19 +63,20 @@ function init_express() {
         app.use(express.json())                        
 
         // ----- Ajout du partage de  documents 'public'
-        if (fs.existsSync(__dirname + '/../public')) {
-            app.use(express.static(__dirname + '/../public', {index:['index.html'], extensions:['html']}) );
+        let publicPath = path.join(__config.workingDirectory, 'public');
+        if (fs.existsSync(publicPath) ) {
+            app.use(express.static(publicPath, {index:['index.html'], extensions:['html']}) );
             __logger.info ('public available at /');
         }
 
         let swaggerAPIS = [];
         Object.keys(routes).forEach( (key) => {
-            swaggerAPIS.push (`app/routes/${key}.js`);
+            swaggerAPIS.push (path.join(__config.workingDirectory, 'app', 'routes', `${key}.js`));
             app.use(`/${key}`, routes[key]);
         });
 
         // ----- Swagger Configuration  --------------------------------------
-        if (config.express.swagger !== undefined && config.express.swagger === true ) {
+        if (config.express.swagger === true ) {
             const swaggerOptions = {  
                 swaggerDefinition: {  
                     info: {  
@@ -86,7 +88,7 @@ function init_express() {
             }  
 
             const swaggerDocs = swaggerJSDoc(swaggerOptions);  
-            app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
+            app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs, {explorer:false}));
 
             __logger.info('swagger available at /api-docs');
         }
@@ -94,7 +96,7 @@ function init_express() {
 
 
         // Communications par sockets
-        require('./sockets/index')(app, socketio);
+        require(path.join(__config.workingDirectory, 'app', 'sockets', 'index'))(app, socketio);
 
         let promesses = [];
 

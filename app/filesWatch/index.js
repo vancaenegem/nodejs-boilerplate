@@ -7,7 +7,6 @@ let filesWatch = {};
 fs.readdirSync(__dirname).forEach( (file) => {
     if (path.extname(file) === '.js' && file !== 'index.js')   {
         let filename = path.join (__dirname, file)
-        console.log (filename);
         let watcher = require(filename);
         filesWatch = {...filesWatch, ...watcher};
     }

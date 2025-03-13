@@ -5,19 +5,19 @@ const path  = require('path');
 // ----- getting the main working directory
 let workingDirectory = process.cwd();
 if (require.main.path !== undefined)        { workingDirectory = require.main.path;};
-if (process.pkg !== undefined )             { workingDirectory = path.dirname(process.argv[0]); } // test si l'application a ete packagee avec l'outil "pkg"
+if (process.pkg !== undefined )             { workingDirectory = path.dirname(process.pkg.entrypoint); } // test si l'application a ete packagee avec l'outil "pkg"
 if (process.env.pm_cwd !== undefined)       { workingDirectory = process.env.pm_cwd; } // test si l'application a ete lancee avec pm2
 
 console.log ('workingDirectory ['+workingDirectory+']' );
 
 global.__config = {
     appName : pjson.name,
-    version : '1.0.0',
+    version : pjson.version,
     debug   : true,
-    env         : 'test',
+    env     : 'test',
     workingDirectory : workingDirectory,
-    dataPath    : workingDirectory + '/data',
-    logPath     : workingDirectory + '/logs',
+    dataPath    : path.join (workingDirectory, 'data'), // Attention : modifier ce chemin si utilisation sous forme d'un executable pkg
+    logPath     : path.join (workingDirectory, 'logs'), // Attention : modifier ce chemin si utilisation sous forme d'un executable pkg
     express     :{
                     enabled     : true,
                     http        : {

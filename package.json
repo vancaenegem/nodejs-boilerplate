@@ -39,7 +39,9 @@
     "assets": [
       "public/**/*",
       "config/**/*",
-      "app/**/*"
+      "app/**/*",
+      "node_modules/socket.io/client-dist/*.js",
+      "node_modules/swagger-ui-dist/**/*"
     ],
     "targets": [
       "node16-win-x64"
