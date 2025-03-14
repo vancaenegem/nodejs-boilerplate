@@ -1,3 +1,4 @@
+const { json } = require('stream/consumers');
 const pjson = require('../package.json');
 const path  = require('path');
 
@@ -29,7 +30,9 @@ global.__config = {
                         cert        : path.join(workingDirectory, 'config', 'certificate', 'cert.pem'),
                         passphrase  : 'pass'
                     },
-                    swagger : true
+                    swagger : true,
+                    cors : true,
+                    json : {limit:'10Mb'}
     },
     electron    :{
                     url : 'http://localhost:4001',

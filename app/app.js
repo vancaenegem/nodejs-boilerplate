@@ -57,10 +57,14 @@ function init_express() {
         app     = __app;
 
         // ----- Activation de CORS
-        app.use(cors());        
+        if (config.express.cors === true ) {
+            app.use(cors());        
+        }
 
         // ----- Activation du raw (json)
-        app.use(express.json())                        
+        if (config.express.json) {
+            app.use(express.json(config.express.json))                        
+        }
 
         // ----- Ajout du partage de  documents 'public'
         let publicPath = path.join(__config.workingDirectory, 'public');
