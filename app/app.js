@@ -86,7 +86,8 @@ function init_express() {
                     info: {  
                         title:config.appName,  
                         version:`${config.version} - ${config.env}`,
-                        description:config.description
+                        description:config.description,
+                        contact:config.author
                     }  
                 },  
                 apis : swaggerAPIS,  

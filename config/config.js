@@ -15,6 +15,7 @@ global.__config = {
     appName : pjson.name,
     version : pjson.version,
     description : pjson.description,
+    author : pjson.author,
     debug   : true,
     env     : 'test',
     workingDirectory : workingDirectory,

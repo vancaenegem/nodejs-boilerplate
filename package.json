@@ -2,7 +2,11 @@
   "name": "boilerplate",
   "keywords": [],
   "description": "A boilerplate for NodeJS",
-  "author": "stephane@vancaenegem.fr",
+  "author": {
+      "name": "Stephane VAN CAENEGEM",
+      "email": "stephane@vancaenegem.fr",
+      "url": "http://vancaenegem.fr/"
+  },
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
