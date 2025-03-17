@@ -14,6 +14,7 @@ console.log ('workingDirectory ['+workingDirectory+']' );
 global.__config = {
     appName : pjson.name,
     version : pjson.version,
+    description : pjson.description,
     debug   : true,
     env     : 'test',
     workingDirectory : workingDirectory,

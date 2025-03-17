@@ -82,10 +82,11 @@ function init_express() {
         // ----- Swagger Configuration  --------------------------------------
         if (config.express.swagger === true ) {
             const swaggerOptions = {  
-                swaggerDefinition: {  
+                definition: {  
                     info: {  
                         title:config.appName,  
-                        version:config.version  
+                        version:`${config.version} - ${config.env}`,
+                        description:config.description
                     }  
                 },  
                 apis : swaggerAPIS,  
