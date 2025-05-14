@@ -6,9 +6,10 @@ const pm2Module = require('../pm2');
  * @swagger 
  * /pm2/: 
  *   get: 
+ *     summary: Process Monitoring
  *     description: Informations PM2
  *     tags:
- *       - pm2
+ *       - Core Model
  *     responses:  
  *       200: 
  *         description: Success  
@@ -22,7 +23,8 @@ router.get('/', (req, res) => {
  * @swagger 
  * /pm2/out/{size}: 
  *   get: 
- *     description: Sortie standard de l'application
+ *     summary: Sortie standard
+ *     description: Consultations des messages de sortie standard de l'application
  *     parameters:
  *       - in: path
  *         name: size
@@ -31,7 +33,7 @@ router.get('/', (req, res) => {
  *         required: false
  *         description: Nombre de ligne a afficher en commençant par la fin
  *     tags:
- *       - pm2
+ *       - Core Model
  *     responses:  
  *       200: 
  *         description: Success 
@@ -53,7 +55,8 @@ router.get('/', (req, res) => {
  * @swagger 
  * /pm2/err/{size}:  
  *   get: 
- *     description: Sortie d'erreur de l'application
+ *     summary: Sortie d'erreur
+ *     description: Consultations des messages de sortie d'erreur de l'application
  *     parameters:
  *       - in: path
  *         name: size
@@ -62,7 +65,7 @@ router.get('/', (req, res) => {
  *         required: false
  *         description: Nombre de ligne a afficher en commençant par la fin
  *     tags:
- *       - pm2
+ *       - Core Model
  *     responses:  
  *       200: 
  *         description: Success 
@@ -84,16 +87,13 @@ router.get('/', (req, res) => {
  * @swagger 
  * /pm2/flush: 
  *   get: 
+ *     summary: Nettoyage des logs
  *     description: Flush logs
  *     tags:
- *       - pm2
+ *       - Core Model
  *     responses:  
  *       200: 
  *         description: Success 
- *         content:
- *           text/plain:
- *           schema:
- *             type: string 
  */ 
  router.get('/flush', (req, res) => {
     return res.json(pm2Module.flush());

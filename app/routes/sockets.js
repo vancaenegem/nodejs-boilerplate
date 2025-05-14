@@ -10,9 +10,10 @@ router.use(function timeLog(req, res, next) {
  * @swagger 
  * /sockets: 
  *   get: 
+ *     summary: Connexions actives
  *     description: Renvoie la liste des clients connectes
  *     tags:
- *       - sockets
+ *       - Core Model
  *     responses:  
  *       200: 
  *         description: Success  

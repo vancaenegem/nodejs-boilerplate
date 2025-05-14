@@ -1,4 +1,4 @@
-const { json } = require('stream/consumers');
+const { json, text } = require('stream/consumers');
 const pjson = require('../package.json');
 const path  = require('path');
 
@@ -34,7 +34,9 @@ global.__config = {
                     },
                     swagger : true,
                     cors : true,
-                    json : {limit:'10Mb'}
+                    json : {limit:'10Mb'},
+                    urlencoded : {limit:'10Mb', extended:true},
+                    text : {limit:'10Mb'}
     },
     electron    :{
                     url : 'http://localhost:4001',

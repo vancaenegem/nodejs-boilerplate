@@ -7,8 +7,9 @@ const router  = require('express').Router();
  * /cron: 
  *   get: 
  *     description: Liste de tous les jobs
+ *     summary: Taches planifiées
  *     tags:
- *       - cron
+ *       - Core Model
  *     responses:  
  *       200: 
  *         description: Success  

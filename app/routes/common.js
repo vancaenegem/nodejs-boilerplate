@@ -11,9 +11,10 @@ router.use(function timeLog(req, res, next) {
  * @swagger 
  * /common/ping: 
  *   get: 
+ *     summary: Informations de paramétrage
  *     description: Renvoie les principales information concernant le processus
  *     tags:
- *       - common
+ *       - Core Model
  *     responses:  
  *       200: 
  *         description: Success  

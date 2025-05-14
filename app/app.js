@@ -57,14 +57,10 @@ function init_express() {
         app     = __app;
 
         // ----- Activation de CORS
-        if (config.express.cors === true ) {
-            app.use(cors());        
-        }
-
-        // ----- Activation du raw (json)
-        if (config.express.json) {
-            app.use(express.json(config.express.json))                        
-        }
+        if (config.express.cors === true )  app.use(cors());        
+        if (config.express.json)            app.use(express.json(config.express.json));    // ----- Activation du raw (json)
+        if (config.express.text)            app.use(express.text(config.express.text));    // ----- Activation du mode text
+        if (config.express.urlencoded)      app.use(express.urlencoded(config.express.urlencoded)); // ----- Activation du mode urlencoded
 
         // ----- Ajout du partage de  documents 'public'
         let publicPath = path.join(__config.workingDirectory, 'public');
@@ -83,12 +79,19 @@ function init_express() {
         if (config.express.swagger === true ) {
             const swaggerOptions = {  
                 definition: {  
+                    openapi: '3.0.0', // Specify the OpenAPI version 
                     info: {  
                         title:config.appName,  
                         version:`${config.version} - ${config.env}`,
                         description:config.description,
                         contact:config.author
-                    }  
+                    },
+                    tags: [
+                        {
+                            name: 'Core Model',
+                            description: 'Core functionalities.'
+                        }
+                    ]
                 },  
                 apis : swaggerAPIS,  
             }  
