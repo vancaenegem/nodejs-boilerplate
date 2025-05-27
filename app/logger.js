@@ -10,7 +10,7 @@ global.__loggers = {
         transports: [
             new winston.transports.File({   level:'debug', 
                                             filename: `${__config.logPath}/debug.log`, 
-                                            maxSize:100000 // 1Mb
+                                            maxsize:100000 // 1Mb
                                         }),
             new winston.transports.Stream({ level: 'debug',
                                             stream: process.stdout
@@ -26,7 +26,8 @@ global.__loggers = {
         transports: [
             new winston.transports.File({   level:'debug', 
                                             filename: `${__config.logPath}/other.log`,
-                                            maxSize:100000 }) // 1Mb
+                                            maxsize:100000, // 1Mb
+                                            maxFiles: 5 }) 
         ]
     })
 };
