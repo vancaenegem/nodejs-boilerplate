@@ -30,7 +30,7 @@ function basicAuth(req, res, next) {
         const validUser = config.express.basicAuth.users.find( u => u.login === user && u.password === pass);       
         if (validUser) return next();
     }
-    
+
     res.set('WWW-Authenticate', 'Basic realm="Restricted Area"');
     return res.status(401).json({ error: 'Invalid credentials' });
 }
@@ -87,19 +87,13 @@ function init_express() {
                 definition: {  
                     openapi: '3.0.0', // Specify the OpenAPI version 
                     info: {  
-                        title:config.appName,  
-                        version:`${config.version} - ${config.env}`,
-                        description:config.description,
-                        contact:config.author
-                    },
-                    tags: [
-                        {
-                            name: 'Core Model',
-                            description: 'Core functionalities.'
-                        }
-                    ]
+                        title       : config.appName,  
+                        version     : `${config.version} - ${config.env}`,
+                        description : config.description,
+                        contact     : config.author
+                    }
                 },  
-                apis : swaggerAPIS,  
+                apis : swaggerAPIS,
             }  
 
             const swaggerDocs = swaggerJSDoc(swaggerOptions);  

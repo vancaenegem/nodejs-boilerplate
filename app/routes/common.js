@@ -2,6 +2,14 @@ const ping = require('../ping');
 const router  = require('express').Router();
 
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Core Model
+ *     description: Core functionalities and utility endpoints (health checks, process info, etc.)
+ */
+
+
 const basicAuth = require('../express').basicAuth;
 router.use(basicAuth);
 
