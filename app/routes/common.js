@@ -1,11 +1,9 @@
 const ping = require('../ping');
 const router  = require('express').Router();
 
-/*
-router.use(function timeLog(req, res, next) {
-    console.log('Time: ', Date.now());
-    next();
-});*/
+
+const basicAuth = require('../express').basicAuth;
+router.use(basicAuth);
 
 /** 
  * @swagger 

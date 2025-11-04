@@ -1,5 +1,9 @@
 const router  = require('express').Router();
 
+
+const basicAuth = require('../express').basicAuth;
+router.use(basicAuth);
+
 /*
 router.use(function timeLog(req, res, next) {
     console.log('Time: ', Date.now());

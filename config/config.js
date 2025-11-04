@@ -1,6 +1,7 @@
 const { json, text } = require('stream/consumers');
 const pjson = require('../package.json');
 const path  = require('path');
+const { basicAuth } = require('../app/express');
 
 // Determine le dossier de travail en fonction de l'environnement d'execution (PM2 ou autre)
 // ----- getting the main working directory
@@ -36,7 +37,12 @@ global.__config = {
                     cors : true,
                     json : {limit:'10Mb'},
                     urlencoded : {limit:'10Mb', extended:true},
-                    text : {limit:'10Mb'}
+                    text : {limit:'10Mb'},
+                    basicAuth : {
+                        users : [
+                            { login : 'admin', password : 'admin' }
+                        ]
+                    }
     },
     electron    :{
                     url : 'http://localhost:4001',
