@@ -82,7 +82,11 @@ function init_express() {
         });
 
         // ----- Swagger Configuration  --------------------------------------
-        if (config.express.swagger === true ) {
+        // On prépare toujours Swagger, mais on le protège par un flag
+        // pour pouvoir l'activer/désactiver à chaud.
+        if (config.express && config.express.swagger !== undefined) {
+            let swaggerEnabled = !!config.express.swagger;
+
             const swaggerOptions = {  
                 definition: {  
                     openapi: '3.0.0', // Specify the OpenAPI version 
@@ -97,9 +101,27 @@ function init_express() {
             }  
 
             const swaggerDocs = swaggerJSDoc(swaggerOptions);  
+
+            // Middleware de garde : renvoie 404 si Swagger est désactivé
+            app.use('/api-docs', (req, res, next) => {
+                if (!swaggerEnabled) {
+                    return res.status(404).json({ error: 'Swagger is disabled' });
+                }
+                next();
+            });
+
+            // Middlewares Swagger UI
             app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs, {explorer:false}));
 
-            global.__logger.info('swagger available at /api-docs');
+            // API interne pour piloter l'état depuis les routes
+            app.swagger = {
+                isEnabled: () => swaggerEnabled,
+                enable:   () => { swaggerEnabled = true; },
+                disable:  () => { swaggerEnabled = false; },
+                set:      (value) => { swaggerEnabled = !!value; }
+            };
+
+            global.__logger.info('swagger initialized at /api-docs');
         }
         // -------------------------------------------------------------------
 
