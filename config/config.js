@@ -1,14 +1,15 @@
-const { json, text } = require('stream/consumers');
 const pjson = require('../package.json');
 const path  = require('path');
-const { basicAuth } = require('../app/express');
 
 // Determine le dossier de travail en fonction de l'environnement d'execution (PM2 ou autre)
 // ----- getting the main working directory
 let workingDirectory = process.cwd();
-if (require.main.path !== undefined)        { workingDirectory = require.main.path;};
+if (require.main.path !== undefined)        { workingDirectory = require.main.path; };
 if (process.pkg !== undefined )             { workingDirectory = path.dirname(process.pkg.entrypoint); } // test si l'application a ete packagee avec l'outil "pkg"
 if (process.env.pm_cwd !== undefined)       { workingDirectory = process.env.pm_cwd; } // test si l'application a ete lancee avec pm2
+
+// S'assure que le workingDirectory est toujours un chemin ABSOLU
+workingDirectory = path.resolve(workingDirectory);
 
 console.log ('workingDirectory ['+workingDirectory+']' );
 
