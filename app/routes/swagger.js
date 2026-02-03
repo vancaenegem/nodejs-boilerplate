@@ -1,5 +1,8 @@
 const router = require('express').Router();
 
+const basicAuth = require('../express').basicAuth;
+router.use(basicAuth);
+
 /** 
  * @swagger 
  * /swagger/enable: 
