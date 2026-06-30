@@ -98,3 +98,8 @@ or ```npm run package```
 ```npm install -g electron-builder```
 
 ```npm run build```
+
+
+# Using bytenode
+
+````node build/compile-bytenode.js`` 
