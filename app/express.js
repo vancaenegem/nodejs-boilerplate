@@ -2,6 +2,11 @@ const path = require('path');
 
 function basicAuth(req, res, next) {
     const config = global.__config;
+    const basicAuthConfig = config && config.express && config.express.basicAuth;
+
+    if (!basicAuthConfig || !Array.isArray(basicAuthConfig.users) || basicAuthConfig.users.length === 0) {
+        return next();
+    }
 
     const auth = req.headers.authorization;
     if (!auth) {
@@ -26,10 +31,8 @@ function basicAuth(req, res, next) {
     const pass = decoded.slice(idx + 1);
 
     // Verification des identifiants
-    if (config.express.basicAuth && Array.isArray(config.express.basicAuth.users)) {
-        const validUser = config.express.basicAuth.users.find( u => u.login === user && u.password === pass);       
-        if (validUser) return next();
-    }
+    const validUser = basicAuthConfig.users.find( u => u.login === user && u.password === pass);
+    if (validUser) return next();
 
     res.set('WWW-Authenticate', 'Basic realm="Restricted Area"');
     return res.status(401).json({ error: 'Invalid credentials' });
