@@ -2,6 +2,18 @@ const bytenode  = require('bytenode');
 const path      = require('path');
 const fs        = require('fs');
 
+
+
+// Compilation du fichier de configuration [app/config.js]...
+let input = path.join(__dirname, '..', 'config', 'config.js');
+let output = input + 'c';
+
+console.log(`Compiling:[${input}] to [${output}]` );
+bytenode.compileFile({ filename: input, output, electronMain: false });
+console.log('OK');
+
+
+// Integration de la liste des routes depuis le dossier [app/routes]...
 let dossier = path.join(__dirname, '..', 'app', 'routes');
 console.log (`Integration de la liste des routes depuis le dossier [${dossier}]...`);
 
