@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
-require ('./config/config');
+require('bytenode');
+try {
+    require('./config/config.jsc');
+} catch (error) {
+    require('./config/config.js_');
+}
+
 require ('./app/logger');
 require ('./app/app');
 
