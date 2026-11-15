@@ -4,7 +4,7 @@ require('bytenode');
 try {
     require('./config/config.jsc');
 } catch (error) {
-    require('./config/config.js_');
+    require('./config/config.js');
 }
 
 require ('./app/logger');
