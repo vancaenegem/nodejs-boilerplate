@@ -16,20 +16,20 @@
     "package": "npx electron-packager . --overwrite --asar=true"
   },
   "bin": "index.js",
-  "dependencies": {
-    "bytenode": "^1.6.0",
-    "chokidar": "^4.0.3",
-    "cors": "^2.8.5",
-    "cron": "^1.8.2",
-    "express": "^4.17.3",
-    "socket.io": "^4.4.1",
-    "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.3.0",
+    "dependencies": {
+    "bytenode": "^2.1.0",
+    "chokidar": "^6.0.0",
+    "cors": "^2.8.6",
+    "cron": "^4.4.0",
+    "express": "^5.3.0",
+    "socket.io": "^4.8.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "tx2": "^1.0.5",
-    "winston": "^3.6.0"
+    "winston": "^3.19.0"
   },
   "devDependencies": {
-    "electron": "^40.1.0"
+    "electron": "^45.3.3"
   },
   "build": {
     "nsis": {
